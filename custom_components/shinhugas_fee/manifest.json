@@ -1,0 +1,13 @@
+{
+    "domain": "shinhugas_fee",
+    "name": "ShinHu Gas Fee",
+    "version": "0.1.0",
+    "documentation": "https://github.com/tsunglung/shinhugas_fee",
+    "issue_tracker": "https://github.com/tsunglung/shinhugas_fee/issues",
+    "config_flow": true,
+    "dependencies": [],
+    "codeowners": [
+        "@tsunglung"
+    ],
+    "requirements": [ "requests", "beautifulsoup4" ]
+}
