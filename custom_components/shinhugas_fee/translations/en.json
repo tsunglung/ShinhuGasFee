@@ -10,7 +10,7 @@
         "step": {
             "user": {
                 "data": {
-                    "gasid": "Water ID (Without dash)",
+                    "gasid": "Gas ID (Without dash)",
                     "cookie": "Cookie",
                     "viewstate": "Viewstate Token",
                     "viewstategenerator": "Viewstate Generator Token"
@@ -35,10 +35,10 @@
     "state": {
         "_": {
             "billing_month": "Billing month",
-            "billing_date": "Billing date",
-            "payment": "Payment",
-            "power_consumption": "Power consumption",
-            "next_billing_date": "Next billing date",
+            "current_gasmeter": "Current Gas Meter",
+            "gas_payment": "Payment",
+            "gas_consumption": "Power consumption",
+            "extra_gas": "Extra Gas",
             "billing_amount": "Billing amount",
             "https_result": "Https result"
         }

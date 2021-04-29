@@ -38,7 +38,7 @@ You need to grab two tokens.
 1. With GUI. Configuration > Integration > Add Integration > ShinhuGas Fee
    1. If the integration didn't show up in the list please REFRESH the page
    2. If the integration is still not in the list, you need to clear the browser cache.
-2. Enter Water ID without dash.
+2. Enter Gas ID without dash.
 3. Paste the viewstate and generator token, validation toekn into the indicated field, all fields are Required.
 
 # Notice

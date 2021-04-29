@@ -134,7 +134,6 @@ class ShinhuGasFeeData():
                 else:
                     self.data[self._gasid]['result'] = HTTP_NOT_FOUND
                 self.expired = False
-                _LOGGER.error(self.data[self._gasid])
             elif req.status_code == HTTP_NOT_FOUND:
                 self.data[self._gasid]['result'] = HTTP_NOT_FOUND
                 self.expired = True

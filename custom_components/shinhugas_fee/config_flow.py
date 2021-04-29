@@ -21,7 +21,7 @@ from .const import (
     CONF_VIEWSTATEGENERATOR
 )
 
-class LineBotFlowHandler(ConfigFlow, domain=DOMAIN):
+class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
     """Handle a ShinHu Gas Fee config flow."""
 
     VERSION = 1
