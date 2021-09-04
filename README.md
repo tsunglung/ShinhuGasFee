@@ -2,6 +2,8 @@
 
 Home assistant support for Shinhu Gas Fee
 
+[The readme in Traditional Chinese](https://github.com/tsunglung/ShinhuGasFee/blob/master/README_zh-Hant.md).
+
 The method was provided by [Jason Lee](https://www.dcard.tw/@jas0n.1ee.com).
 
 ***User the integration by your own risk***
@@ -26,7 +28,7 @@ You need to grab two tokens.
 4. Search for "member" (for me only one itemes shows up, choose the first one)
 5. Go to "headers" -> "from data"
 6. copy the 1168 characters like "\wXXXXXXXXXXXX....=" in the field "\__VIEWSTATE:"  (mark with a mouse and copy to clipboard)
-7. copy the 8 characters like "\wXXXXXXXXXXXX....." in the field "\__VIEWSTATEGENERATOR:"  (mark with a mouse and copy to clipboard)
+7. copy the 8 characters like "1EA234B5" in the field "\__VIEWSTATEGENERATOR:"  (mark with a mouse and copy to clipboard)
 
 # Config
 
@@ -44,3 +46,9 @@ You need to grab two tokens.
 # Notice
 The viewstate and generator tokens will expired after hours. If you saw the https_result is 403, you need get the new tokens again.
 Then got to Configuration > Integration > ShinhuGas Fee > Options, enter the info of tokens.
+
+Buy me a Coffee
+
+|  LINE Pay | LINE Bank | JKao Pay |
+| :------------: | :------------: | :------------: |
+| <img src="https://github.com/tsunglung/OpenCWB/blob/master/linepay.jpg" alt="Line Pay" height="200" width="200">  | <img src="https://github.com/tsunglung/OpenCWB/blob/master/linebank.jpg" alt="Line Bank" height="200" width="200">  | <img src="https://github.com/tsunglung/OpenCWB/blob/master/jkopay.jpg" alt="JKo Pay" height="200" width="200">  |

@@ -13,7 +13,8 @@
                     "gasid": "\u5929\u7136\u6c23\u7528\u6236\u7de8\u865f",
                     "cookie": "Cookie",
                     "viewstate": "\u6aa2\u8996\u4ee4\u724c",
-                    "viewstategenerator": "\u7522\u751f\u5668\u4ee4\u724c"
+                    "viewstategenerator": "\u7522\u751f\u5668\u4ee4\u724c",
+                    "viewstate4upload": "\u4e0a\u50b3\u7528\u6aa2\u8996\u4ee4\u724c"
                 },
                 "description": "\u8acb\u8f38\u5165\u4f60\u7684 \u6b23\u6e56\u74e6\u65af \u9023\u7dda\u8cc7\u8a0a."
             }
@@ -27,7 +28,8 @@
                     "gasid": "\u5929\u7136\u6c23\u7528\u6236\u7de8\u865f",
                     "cookie": "Cookie",
                     "viewstate": "\u6aa2\u8996\u4ee4\u724c",
-                    "viewstategenerator": "\u7522\u751f\u5668\u4ee4\u724c"
+                    "viewstategenerator": "\u7522\u751f\u5668\u4ee4\u724c",
+                    "viewstate4upload": "\u4e0a\u50b3\u7528\u6aa2\u8996\u4ee4\u724c"
                 }
             }
         }

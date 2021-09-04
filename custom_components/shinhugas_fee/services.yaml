@@ -1,0 +1,9 @@
+gas_upload_usage:
+  description: Upload Gas Usage.
+  fields:
+    entity_id:
+      description: Name of the Gas binary_sensor entity.
+      example: "shinhugas_fee.gas_upload_usage"
+    Usage:
+      description: Usage Number
+      example: 6688

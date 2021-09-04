@@ -13,7 +13,8 @@
                     "gasid": "Gas ID (Without dash)",
                     "cookie": "Cookie",
                     "viewstate": "Viewstate Token",
-                    "viewstategenerator": "Viewstate Generator Token"
+                    "viewstategenerator": "Viewstate Generator Token",
+                    "viewstate4upload": "Viewstate Token for Upload"
                 },
                 "description": "Please enter connection settings of your ShinHu Gas Fee."
             }
@@ -27,7 +28,8 @@
                     "gasid": "Gas ID",
                     "cookie": "Cookie",
                     "viewstate": "Viewstate Token",
-                    "viewstategenerator": "Viewstate Generator Token"
+                    "viewstategenerator": "Viewstate Generator Token",
+                    "viewstate4upload": "Viewstate Token for Upload"
                 }
             }
         }

@@ -16,9 +16,9 @@ from .const import (
     DOMAIN,
     DEFAULT_NAME,
     CONF_GASID,
-#    CONF_COOKIE,
     CONF_VIEWSTATE,
-    CONF_VIEWSTATEGENERATOR
+    CONF_VIEWSTATEGENERATOR,
+    CONF_VIEWSTATE4UPLOAD
 )
 
 class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
@@ -30,9 +30,9 @@ class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
     def __init__(self):
         """Initialize flow."""
         self._gas_id: Optional[str] = None
-        self._cookie: Optional[str] = None
         self._viewstate: Optional[str] = None
-        self._eventvalidation: Optional[str] = None
+        self._viewstategenerator: Optional[str] = None
+        self._viewstate4upload: Optional[str] = None
 
     @staticmethod
     @callback
@@ -56,12 +56,12 @@ class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
         fields = OrderedDict()
         fields[vol.Required(CONF_GASID,
                             default=self._gas_id or vol.UNDEFINED)] = str
-#        fields[vol.Required(CONF_COOKIE,
-#                            default=self._cookie or vol.UNDEFINED)] = str
         fields[vol.Required(CONF_VIEWSTATE,
                             default=self._viewstate or vol.UNDEFINED)] = str
         fields[vol.Required(CONF_VIEWSTATEGENERATOR,
-                            default=self._eventvalidation or vol.UNDEFINED)] = str
+                            default=self._viewstategenerator or vol.UNDEFINED)] = str
+        fields[vol.Optional(CONF_VIEWSTATE4UPLOAD,
+                            default=self._viewstate4upload or vol.UNDEFINED)] = str
         self._name = self._gas_id
         return self.async_show_form(
             step_id="user",
@@ -86,9 +86,9 @@ class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
         if user_input is None:
             return
         self._gas_id = user_input.get(CONF_GASID, "")
-#        self._cookie = user_input.get(CONF_COOKIE, "")
         self._viewstate = user_input.get(CONF_VIEWSTATE, "")
-        self._eventvalidation = user_input.get(CONF_VIEWSTATEGENERATOR, "")
+        self._viewstategenerator = user_input.get(CONF_VIEWSTATEGENERATOR, "")
+        self._viewstate4upload = user_input.get(CONF_VIEWSTATE4UPLOAD, "")
 
     @callback
     def _async_get_entry(self):
@@ -96,9 +96,9 @@ class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
             title=self._name,
             data={
                 CONF_GASID: self._gas_id,
- #               CONF_COOKIE: self._cookie,
                 CONF_VIEWSTATE: self._viewstate,
-                CONF_VIEWSTATEGENERATOR: self._eventvalidation,
+                CONF_VIEWSTATEGENERATOR: self._viewstategenerator,
+                CONF_VIEWSTATE4UPLOAD: self._viewstate4upload
             },
         )
 
@@ -109,7 +109,8 @@ class OptionsFlowHandler(OptionsFlow):
     _gas_id = None
     _cookie = None
     _viewstate = None
-    _eventvalidation = None
+    _viewstategenerator = None
+    _viewstate4upload = None
 
     def __init__(self, config_entry):
         """Initialize options flow."""
@@ -118,32 +119,32 @@ class OptionsFlowHandler(OptionsFlow):
     async def async_step_init(self, user_input=None):
         """Manage options."""
         if user_input is not None:
-            self._eventvalidation = user_input.get(CONF_VIEWSTATEGENERATOR)
+            self._viewstategenerator = user_input.get(CONF_VIEWSTATEGENERATOR)
+            self._viewstate4upload = user_input.get(CONF_VIEWSTATE4UPLOAD)
             self._gas_id = user_input.get(CONF_GASID)
-#            self._cookie = user_input.get(CONF_COOKIE)
             self._viewstate = user_input.get(CONF_VIEWSTATE)
             return self.async_create_entry(
                 title='',
                 data={
                     CONF_GASID: self._gas_id,
-#                    CONF_COOKIE: self._cookie,
                     CONF_VIEWSTATE: self._viewstate,
-                    CONF_VIEWSTATEGENERATOR: self._eventvalidation,
+                    CONF_VIEWSTATEGENERATOR: self._viewstategenerator,
+                    CONF_VIEWSTATE4UPLOAD: self._viewstate4upload
                 },
             )
         self._gas_id = self.config_entry.options.get(CONF_GASID, '')
-#        self._cookie = self.config_entry.options.get(CONF_COOKIE, '')
         self._viewstate = self.config_entry.options.get(CONF_VIEWSTATE, '')
-        self._eventvalidation = self.config_entry.options.get(CONF_VIEWSTATEGENERATOR, '')
+        self._viewstategenerator = self.config_entry.options.get(CONF_VIEWSTATEGENERATOR, '')
+        self._viewstate4upload = self.config_entry.options.get(CONF_VIEWSTATE4UPLOAD, '')
 
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_GASID, default=self._gas_id): str,
-#                    vol.Required(CONF_COOKIE, default=self._cookie): str,
                     vol.Required(CONF_VIEWSTATE, default=self._viewstate): str,
-                    vol.Required(CONF_VIEWSTATEGENERATOR, default=self._eventvalidation): str,
+                    vol.Required(CONF_VIEWSTATEGENERATOR, default=self._viewstategenerator): str,
+                    vol.Optional(CONF_VIEWSTATE4UPLOAD, default=self._viewstate4upload): str
                 }
             ),
         )

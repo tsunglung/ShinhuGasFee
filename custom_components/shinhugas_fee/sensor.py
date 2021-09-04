@@ -36,7 +36,10 @@ from .const import (
     CONF_VIEWSTATE,
     CONF_VIEWSTATEGENERATOR,
     DATA_KEY,
+    DEFAULT_NAME,
+    DOMAIN,
     HA_USER_AGENT,
+    MANUFACTURER,
     REQUEST_TIMEOUT
 )
 
@@ -166,7 +169,7 @@ class ShinhuGasFeeSensor(SensorEntity):
         self._data = data
         self._attributes = {}
         self._attr_value = {}
-        self._name = "shinhu_gas_fee_{}".format(gasid)
+        self._name = "{} {}".format(DEFAULT_NAME, gasid)
         self._gasid = gasid
 
         self.uri = BASE_URL
@@ -207,6 +210,14 @@ class ShinhuGasFeeSensor(SensorEntity):
         for i in ATTR_LIST:
             self._attributes[i] = self._attr_value[i]
         return self._attributes
+
+    @property
+    def device_info(self):
+        return {
+            'identifiers': {(DOMAIN, self._gasid)},
+            'manufacturer': MANUFACTURER,
+            'name': self._name
+        }
 
     async def async_added_to_hass(self):
         """Get initial data."""
