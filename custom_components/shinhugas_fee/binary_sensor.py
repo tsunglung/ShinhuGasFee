@@ -4,6 +4,7 @@ import logging
 import voluptuous as vol
 from aiohttp.hdrs import USER_AGENT
 import requests
+from http import HTTPStatus
 from functools import partial
 from bs4 import BeautifulSoup
 
@@ -11,10 +12,7 @@ from homeassistant.components.binary_sensor import BinarySensorEntity
 import homeassistant.util.dt as dt_util
 import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (
-    ATTR_ENTITY_ID,
-    HTTP_OK,
-    HTTP_FORBIDDEN,
-    HTTP_NOT_FOUND,
+    ATTR_ENTITY_ID
 )
 #from . import setup_input
 from .const import (
@@ -197,13 +195,13 @@ class GasUsageUploadBinarySensor(BinarySensorEntity):
             return
 
         self._https_result = req.status_code
-        if req.status_code == HTTP_OK:
+        if req.status_code == HTTPStatus.OK:
             self._state = self._parser_html(req.text)
-        elif req.status_code == HTTP_NOT_FOUND:
+        elif req.status_code == HTTPStatus.NOT_FOUND:
             self._state = False
         else:
             info = ""
-            if req.status_code == HTTP_FORBIDDEN:
+            if req.status_code == HTTPStatus.FORBIDDEN:
                 info = " Token or Cookie is expired"
             _LOGGER.error(
                 "Failed fetching data for %s (HTTP Status_code = %d).%s",
