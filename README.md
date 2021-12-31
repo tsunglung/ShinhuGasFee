@@ -18,7 +18,7 @@ Then restart HA.
 
 # Setup
 
-You need to grab two tokens.
+You need to grab one token. If your get problem with https_result is 500, you need to generate new token because Shinhu Gas web was already changed.
 
 **1. Basic steps for grabbing**
 
@@ -27,8 +27,7 @@ You need to grab two tokens.
 3. Open the [Shinhu Gas Fee Web site](http://www.shinhugas.com.tw/Default.aspx), Enter the User name and password.
 4. Search for "member" (for me only one itemes shows up, choose the first one)
 5. Go to "headers" -> "from data"
-6. copy the 1168 characters like "\wXXXXXXXXXXXX....=" in the field "\__VIEWSTATE:"  (mark with a mouse and copy to clipboard)
-7. copy the 8 characters like "1EA234B5" in the field "\__VIEWSTATEGENERATOR:"  (mark with a mouse and copy to clipboard)
+6. copy the a very long characters like "GA1adsm2S50n;2xlmbbG9....=" in the field "\__VIEWSTATE:"  (mark with a mouse and copy to clipboard)
 
 # Config
 

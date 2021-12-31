@@ -60,13 +60,11 @@ async def async_setup_entry(hass, config, async_add_devices):
     if config.data.get(CONF_GASID, None):
         gasid = config.data[CONF_GASID]
         viewstate4upload = config.data.get(CONF_VIEWSTATE4UPLOAD, None)
-        viewstategenerator = config.data[CONF_VIEWSTATEGENERATOR]
     else:
         gasid = config.options[CONF_GASID]
         viewstate4upload = config.options.get(CONF_VIEWSTATE4UPLOAD, None)
-        viewstategenerator = config.options[CONF_VIEWSTATEGENERATOR]
 
-    device = GasUsageUploadBinarySensor(hass, gasid, viewstate4upload, viewstategenerator)
+    device = GasUsageUploadBinarySensor(hass, gasid, viewstate4upload)
 
     hass.data[DATA_KEY_BINARY][config.entry_id] = device
     async_add_devices([device], update_before_add=True)
@@ -108,7 +106,7 @@ async def async_setup_entry(hass, config, async_add_devices):
 class GasUsageUploadBinarySensor(BinarySensorEntity):
     """Represent a binary sensor."""
 
-    def __init__(self, hass, gasid, viewstate4upload, viewstategenerator):
+    def __init__(self, hass, gasid, viewstate4upload):
         """Set initializing values."""
         super().__init__()
         self._name = "{} {}".format(DEFAULT_NAME_UPLOAD_USAGE, gasid)
@@ -116,7 +114,6 @@ class GasUsageUploadBinarySensor(BinarySensorEntity):
         self._state = False
         self._gasid = gasid
         self._viewstate4upload = viewstate4upload
-        self._viewstategenerator = viewstategenerator
         self._https_result = None
         self._upload_datetime = None
         self.hass = hass
@@ -164,14 +161,12 @@ class GasUsageUploadBinarySensor(BinarySensorEntity):
     async def async_upload_gas_usage(self, usage: int = 0):
         """Upload Gas Usage."""
 
-        _LOGGER.error(usage)
-        if self._viewstate4upload is None or self._viewstategenerator is None:
+        if self._viewstate4upload is None:
             _LOGGER.error("The token can not empty!")
             return
         headers = {USER_AGENT: HA_USER_AGENT}
         payload = {
             "__VIEWSTATE": self._viewstate4upload,
-            "__VIEWSTATEGENERATOR": self._viewstategenerator,
             "Ddl_telrel": self._gasid,
             "Txt_telrel": usage,
             "txt_telrel_mark": "",

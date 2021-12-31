@@ -30,9 +30,7 @@ from .const import (
     ATTR_LIST,
     BASE_URL,
     CONF_GASID,
-    CONF_COOKIE,
     CONF_VIEWSTATE,
-    CONF_VIEWSTATEGENERATOR,
     DATA_KEY,
     DEFAULT_NAME,
     DOMAIN,
@@ -57,16 +55,12 @@ async def async_setup_entry(
     cookie = None
     if config.data.get(CONF_GASID, None):
         gasid = config.data[CONF_GASID]
-#        cookie = config.data[CONF_COOKIE]
         viewstate = config.data[CONF_VIEWSTATE]
-        viewstategenerator = config.data[CONF_VIEWSTATEGENERATOR]
     else:
         gasid = config.options[CONF_GASID]
-#        cookie = config.options[CONF_COOKIE]
         viewstate = config.options[CONF_VIEWSTATE]
-        viewstategenerator = config.options[CONF_VIEWSTATEGENERATOR]
 
-    data = ShinhuGasFeeData(gasid, cookie, viewstate, viewstategenerator)
+    data = ShinhuGasFeeData(gasid, cookie, viewstate)
     data.expired = False
     device = ShinhuGasFeeSensor(data, gasid)
 
@@ -77,13 +71,12 @@ async def async_setup_entry(
 class ShinhuGasFeeData():
     """Class for handling the data retrieval."""
 
-    def __init__(self, gasid, cookie, viewstate, viewstategenerator):
+    def __init__(self, gasid, cookie, viewstate):
         """Initialize the data object."""
         self.data = {}
         self._gasid = gasid
         self._cookie = cookie
         self._viewstate = viewstate
-        self._viewstategenerator = viewstategenerator
         self.expired = False
         self.uri = BASE_URL
 
@@ -110,8 +103,7 @@ class ShinhuGasFeeData():
         payload = {
             "Btn_Degree_qry": "查詢",
             "Ddl_Hisdegree": self._gasid,
-            "__VIEWSTATE": self._viewstate,
-            "__VIEWSTATEGENERATOR": self._viewstategenerator}
+            "__VIEWSTATE": self._viewstate}
 
         self.data = {}
         self.data[self._gasid] = {}

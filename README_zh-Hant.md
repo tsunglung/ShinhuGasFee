@@ -17,7 +17,7 @@ Home assistant for 欣湖天然氣
 
 # 前置作業
 
-你必須取得 VIEWSTATE 和 VIEWSTATEGENERATOR 令牌.
+你必須取得 VIEWSTATE 令牌. 如果你遇到 http_result 500 的問題，你必須要重新取得令牌，因為欣湖網站已經改版。
 
 **1. 取得步驟**
 
@@ -26,9 +26,8 @@ Home assistant for 欣湖天然氣
 3. 打開 [欣湖天然氣](http://www.shinhugas.com.tw/Default.aspx) 的網站, 登入你的帳號密碼.
 4. 在 filter 欄位, 搜尋 "member" (可能會有多個項目，選擇第一個)
 5. 移動 "headers" -> "from data"
-6. 複製在 \__VIEWSTATE: 欄位下, 1168 字元, 像 "\wXXXXXXXXXXXX....=" (使用滑鼠並複製到剪貼簿, 或是記事本)
-7. 複製在 \__VIEWSTATEGENERATOR: 欄位下, 8 字元, 像 "1EA234B5" (使用滑鼠並複製到剪貼簿, 或是記事本)
-8. 如果，你想要有自報度數的功能。你可以點擊 [自報度數](http://www.shinhugas.com.tw//自報度數.htm) 的按鈕，自報一次天氣然度數。
+6. 複製在 \__VIEWSTATE: 欄位下, 一段很長的字串, 像 "GA1adsm2S50n;2xlmbbG9....=" (使用滑鼠並複製到剪貼簿, 或是記事本)
+7. 如果，你想要有自報度數的功能。你可以點擊 [自報度數](http://www.shinhugas.com.tw//自報度數.htm) 的按鈕，自報一次天氣然度數。
    移動 "headers" -> "from data" 後，找到 \__VIEWSTATE (636 字元) 複製到記事本。
 
 ![grabbing](grabbing.png)

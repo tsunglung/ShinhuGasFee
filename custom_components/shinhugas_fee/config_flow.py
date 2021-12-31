@@ -17,7 +17,6 @@ from .const import (
     DEFAULT_NAME,
     CONF_GASID,
     CONF_VIEWSTATE,
-    CONF_VIEWSTATEGENERATOR,
     CONF_VIEWSTATE4UPLOAD
 )
 
@@ -58,8 +57,6 @@ class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
                             default=self._gas_id or vol.UNDEFINED)] = str
         fields[vol.Required(CONF_VIEWSTATE,
                             default=self._viewstate or vol.UNDEFINED)] = str
-        fields[vol.Required(CONF_VIEWSTATEGENERATOR,
-                            default=self._viewstategenerator or vol.UNDEFINED)] = str
         fields[vol.Optional(CONF_VIEWSTATE4UPLOAD,
                             default=self._viewstate4upload or vol.UNDEFINED)] = str
         self._name = self._gas_id
@@ -87,7 +84,6 @@ class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
             return
         self._gas_id = user_input.get(CONF_GASID, "")
         self._viewstate = user_input.get(CONF_VIEWSTATE, "")
-        self._viewstategenerator = user_input.get(CONF_VIEWSTATEGENERATOR, "")
         self._viewstate4upload = user_input.get(CONF_VIEWSTATE4UPLOAD, "")
 
     @callback
@@ -97,7 +93,6 @@ class ShinHuFlowHandler(ConfigFlow, domain=DOMAIN):
             data={
                 CONF_GASID: self._gas_id,
                 CONF_VIEWSTATE: self._viewstate,
-                CONF_VIEWSTATEGENERATOR: self._viewstategenerator,
                 CONF_VIEWSTATE4UPLOAD: self._viewstate4upload
             },
         )
@@ -119,7 +114,6 @@ class OptionsFlowHandler(OptionsFlow):
     async def async_step_init(self, user_input=None):
         """Manage options."""
         if user_input is not None:
-            self._viewstategenerator = user_input.get(CONF_VIEWSTATEGENERATOR)
             self._viewstate4upload = user_input.get(CONF_VIEWSTATE4UPLOAD)
             self._gas_id = user_input.get(CONF_GASID)
             self._viewstate = user_input.get(CONF_VIEWSTATE)
@@ -128,13 +122,11 @@ class OptionsFlowHandler(OptionsFlow):
                 data={
                     CONF_GASID: self._gas_id,
                     CONF_VIEWSTATE: self._viewstate,
-                    CONF_VIEWSTATEGENERATOR: self._viewstategenerator,
                     CONF_VIEWSTATE4UPLOAD: self._viewstate4upload
                 },
             )
         self._gas_id = self.config_entry.options.get(CONF_GASID, '')
         self._viewstate = self.config_entry.options.get(CONF_VIEWSTATE, '')
-        self._viewstategenerator = self.config_entry.options.get(CONF_VIEWSTATEGENERATOR, '')
         self._viewstate4upload = self.config_entry.options.get(CONF_VIEWSTATE4UPLOAD, '')
 
         return self.async_show_form(
@@ -143,7 +135,6 @@ class OptionsFlowHandler(OptionsFlow):
                 {
                     vol.Required(CONF_GASID, default=self._gas_id): str,
                     vol.Required(CONF_VIEWSTATE, default=self._viewstate): str,
-                    vol.Required(CONF_VIEWSTATEGENERATOR, default=self._viewstategenerator): str,
                     vol.Optional(CONF_VIEWSTATE4UPLOAD, default=self._viewstate4upload): str
                 }
             ),
